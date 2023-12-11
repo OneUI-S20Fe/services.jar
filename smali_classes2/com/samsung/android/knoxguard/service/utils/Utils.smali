@@ -1933,186 +1933,19 @@
 .end method
 
 .method public static setRemoteLockToLockscreen(Landroid/content/Context;IZLjava/lang/String;Ljava/lang/String;Ljava/lang/String;ZLjava/lang/String;IJIZLandroid/os/Bundle;)V
-    .locals 15
+   .registers 14
 
-    const/4 v14, 0x1
+    const/4 v0, 0x0
 
-    move-object v0, p0
-
-    move/from16 v1, p1
-
-    move/from16 v2, p2
-
-    move-object/from16 v3, p3
-
-    move-object/from16 v4, p4
-
-    move-object/from16 v5, p5
-
-    move/from16 v6, p6
-
-    move-object/from16 v7, p7
-
-    move/from16 v8, p8
-
-    move-wide/from16 v9, p9
-
-    move/from16 v11, p11
-
-    move/from16 v12, p12
-
-    move-object/from16 v13, p13
-
-    .line 356
-    invoke-static/range {v0 .. v14}, Lcom/samsung/android/knoxguard/service/utils/Utils;->setRemoteLockToLockscreen(Landroid/content/Context;IZLjava/lang/String;Ljava/lang/String;Ljava/lang/String;ZLjava/lang/String;IJIZLandroid/os/Bundle;Z)V
-
-    return-void
+    return v0
 .end method
 
 .method public static setRemoteLockToLockscreen(Landroid/content/Context;IZLjava/lang/String;Ljava/lang/String;Ljava/lang/String;ZLjava/lang/String;IJIZLandroid/os/Bundle;Z)V
-    .locals 1
+    .registers 15
 
-    .line 362
-    :try_start_0
-    sget-object v0, Lcom/samsung/android/knoxguard/service/utils/Utils;->mLockSettingsService:Lcom/android/internal/widget/ILockSettings;
+    const/4 v0, 0x0
 
-    if-nez v0, :cond_0
-
-    const-string v0, "lock_settings"
-
-    .line 363
-    invoke-static {v0}, Landroid/os/ServiceManager;->getService(Ljava/lang/String;)Landroid/os/IBinder;
-
-    move-result-object v0
-
-    invoke-static {v0}, Lcom/android/internal/widget/ILockSettings$Stub;->asInterface(Landroid/os/IBinder;)Lcom/android/internal/widget/ILockSettings;
-
-    move-result-object v0
-
-    sput-object v0, Lcom/samsung/android/knoxguard/service/utils/Utils;->mLockSettingsService:Lcom/android/internal/widget/ILockSettings;
-
-    .line 366
-    :cond_0
-    new-instance v0, Lcom/android/internal/widget/RemoteLockInfo$Builder;
-
-    invoke-direct {v0, p1, p2}, Lcom/android/internal/widget/RemoteLockInfo$Builder;-><init>(IZ)V
-
-    invoke-virtual {v0, p7}, Lcom/android/internal/widget/RemoteLockInfo$Builder;->setClientName(Ljava/lang/CharSequence;)Lcom/android/internal/widget/RemoteLockInfo$Builder;
-
-    move-result-object p1
-
-    invoke-virtual {p1, p4}, Lcom/android/internal/widget/RemoteLockInfo$Builder;->setPhoneNumber(Ljava/lang/CharSequence;)Lcom/android/internal/widget/RemoteLockInfo$Builder;
-
-    move-result-object p1
-
-    invoke-virtual {p1, p5}, Lcom/android/internal/widget/RemoteLockInfo$Builder;->setEmailAddress(Ljava/lang/CharSequence;)Lcom/android/internal/widget/RemoteLockInfo$Builder;
-
-    move-result-object p1
-
-    invoke-virtual {p1, p3}, Lcom/android/internal/widget/RemoteLockInfo$Builder;->setMessage(Ljava/lang/CharSequence;)Lcom/android/internal/widget/RemoteLockInfo$Builder;
-
-    move-result-object p1
-
-    invoke-virtual {p1, p8}, Lcom/android/internal/widget/RemoteLockInfo$Builder;->setAllowFailCount(I)Lcom/android/internal/widget/RemoteLockInfo$Builder;
-
-    move-result-object p1
-
-    .line 367
-    invoke-virtual {p1, p6}, Lcom/android/internal/widget/RemoteLockInfo$Builder;->setEnableEmergencyCall(Z)Lcom/android/internal/widget/RemoteLockInfo$Builder;
-
-    move-result-object p1
-
-    invoke-virtual {p1, p9, p10}, Lcom/android/internal/widget/RemoteLockInfo$Builder;->setLockTimeOut(J)Lcom/android/internal/widget/RemoteLockInfo$Builder;
-
-    move-result-object p1
-
-    invoke-virtual {p1, p11}, Lcom/android/internal/widget/RemoteLockInfo$Builder;->setBlockCount(I)Lcom/android/internal/widget/RemoteLockInfo$Builder;
-
-    move-result-object p1
-
-    invoke-virtual {p1, p12}, Lcom/android/internal/widget/RemoteLockInfo$Builder;->setSkipPinContainer(Z)Lcom/android/internal/widget/RemoteLockInfo$Builder;
-
-    move-result-object p1
-
-    .line 368
-    invoke-virtual {p1, p13}, Lcom/android/internal/widget/RemoteLockInfo$Builder;->setBundle(Landroid/os/Bundle;)Lcom/android/internal/widget/RemoteLockInfo$Builder;
-
-    move-result-object p1
-
-    invoke-virtual {p1, p14}, Lcom/android/internal/widget/RemoteLockInfo$Builder;->setSkipSupportContainer(Z)Lcom/android/internal/widget/RemoteLockInfo$Builder;
-
-    move-result-object p1
-
-    invoke-virtual {p1}, Lcom/android/internal/widget/RemoteLockInfo$Builder;->build()Lcom/android/internal/widget/RemoteLockInfo;
-
-    move-result-object p1
-
-    .line 370
-    sget-object p3, Lcom/samsung/android/knoxguard/service/utils/Utils;->mLockSettingsService:Lcom/android/internal/widget/ILockSettings;
-
-    invoke-static {}, Landroid/app/ActivityManager;->getCurrentUser()I
-
-    move-result p4
-
-    invoke-interface {p3, p4, p1}, Lcom/android/internal/widget/ILockSettings;->setKnoxGuard(ILcom/android/internal/widget/RemoteLockInfo;)Z
-
-    move-result p3
-
-    .line 371
-    invoke-static {p3}, Lcom/samsung/android/knoxguard/service/KnoxGuardSeService;->setLockResult(Z)V
-
-    if-eqz p2, :cond_1
-
-    if-nez p3, :cond_1
-
-    .line 373
-    sget-boolean p2, Lcom/samsung/android/knoxguard/service/utils/Constants;->IS_SUPPORT_KGTA:Z
-
-    if-eqz p2, :cond_1
-
-    .line 374
-    invoke-static {}, Landroid/os/Binder;->clearCallingIdentity()J
-
-    move-result-wide p2
-
-    .line 375
-    invoke-static {p0, p1}, Lcom/samsung/android/knoxguard/service/utils/Utils;->startRetryLockAlarm(Landroid/content/Context;Lcom/android/internal/widget/RemoteLockInfo;)V
-
-    .line 376
-    invoke-static {p2, p3}, Landroid/os/Binder;->restoreCallingIdentity(J)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
-
-    goto :goto_0
-
-    :catch_0
-    move-exception p0
-
-    .line 379
-    sget-object p1, Lcom/samsung/android/knoxguard/service/utils/Utils;->TAG:Ljava/lang/String;
-
-    new-instance p2, Ljava/lang/StringBuilder;
-
-    invoke-direct {p2}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string p3, "call setRemoteLockToLockscreen Exception : "
-
-    invoke-virtual {p2, p3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {p2, p0}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {p2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object p2
-
-    invoke-static {p1, p2}, Landroid/util/Slog;->e(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 380
-    invoke-virtual {p0}, Landroid/os/RemoteException;->printStackTrace()V
-
-    :cond_1
-    :goto_0
-    return-void
+    return v0
 .end method
 
 .method public static setRetryLock(Landroid/content/Context;)Z
